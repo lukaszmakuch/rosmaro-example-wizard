@@ -1,0 +1,30 @@
+{
+  "name": "rosmaro-example-wizard",
+  "version": "1.0.0",
+  "description": "An example wizard implemented using Rosmaro.",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/babel src -d lib",
+    "start": "./node_modules/.bin/babel-node src/index.js"
+  },
+  "author": "Łukasz Makuch <kontakt@lukaszmakuch.pl> (http://lukaszmakuch.pl)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "common-tags": "^1.4.0",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "express": "^4.15.2",
+    "fs-promise": "^2.0.2",
+    "rosmaro": "^0.0.*",
+    "rosmaro-in-memory-storage": "0.0.1",
+    "rosmaro-process-wide-lock": "0.0.1",
+    "simple-server-side-rosmaro-forms": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-syntax-object-rest-spread": "^6.13.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-env": "^1.4.0"
+  }
+}
