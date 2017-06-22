@@ -28,7 +28,7 @@ app.get('/', async (req, res) => {
         <script>
           const when_form_changed = e => e.target.form.submit()
           document.querySelectorAll(".auto-submit").forEach(
-          elem => elem.addEventListener("change", when_form_changed)
+            elem => elem.addEventListener("change", when_form_changed)
           )
         </script>
     </body>
