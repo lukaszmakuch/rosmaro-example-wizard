@@ -19,58 +19,58 @@ const promo_cold_summary = make_cold_summary(promo_price_service)
 
 export default () => ({
   type: "graph",
-	start: "promo_code",
-	arrows: {
+  start: "promo_code",
+  arrows: {
 
-		promo_code: {
-			ok: "ordering_with_promo_code",
-			wrong: "ordering_without_promo_code",
-      skipped: "ordering_without_promo_code"
-		},
+  promo_code: {
+    ok: "ordering_with_promo_code",
+    wrong: "ordering_without_promo_code",
+    skipped: "ordering_without_promo_code"
+  },
 
-		ordering_without_promo_code: {
-			go_back: "promo_code"
-		}
+  ordering_without_promo_code: {
+    go_back: "promo_code"
+  }
 
-	},
-	nodes: {
-		promo_code: promo_code(),
-		ordering_with_promo_code: ordering_with_promo_code(),
-		ordering_without_promo_code: ordering_without_promo_code()
-	}
+  },
+  nodes: {
+    promo_code: promo_code(),
+    ordering_with_promo_code: ordering_with_promo_code(),
+    ordering_without_promo_code: ordering_without_promo_code()
+  }
 })
 
 const ordering_without_promo_code = () => ({
   type: "graph",
-	start: "pick_drink_or_go_back",
-	arrows: {
+  start: "pick_drink_or_go_back",
+  arrows: {
 
     pick_drink_or_go_back: {
       hot: "hot_summary",
       cold: "cold_summary"
     },
 
-		hot_summary: {
-			change_order: "pick_drink_or_go_back",
-			ordered: "thanks"
-		},
+    hot_summary: {
+      change_order: "pick_drink_or_go_back",
+      ordered: "thanks"
+    },
 
-		cold_summary: {
-			change_order: "pick_drink_or_go_back",
-			ordered: "thanks"
-		},
+    cold_summary: {
+      change_order: "pick_drink_or_go_back",
+      ordered: "thanks"
+    },
 
     thanks: {
       buy_more: "pick_drink_or_go_back"
     }
 
-	},
-	nodes: {
-		pick_drink_or_go_back: pick_drink_or_go_back(),
-		hot_summary: hot_summary(),
-		cold_summary: cold_summary(),
-		thanks: thanks()
-	}
+  },
+  nodes: {
+    pick_drink_or_go_back: pick_drink_or_go_back(),
+    hot_summary: hot_summary(),
+    cold_summary: cold_summary(),
+    thanks: thanks()
+  }
 })
 
 const ordering_with_promo_code = () => ({
@@ -118,110 +118,110 @@ const promo_code = () => ({
   arrows: {
 
     enter_promo_code: {
-			wrong: "wrong_code"
-		},
+      wrong: "wrong_code"
+    },
 
-		wrong_code: {
-			try_again: "enter_promo_code"
-		}
+    wrong_code: {
+      try_again: "enter_promo_code"
+    }
 
   },
   nodes: {
-		enter_promo_code: enter_promo_code(),
-		wrong_code: wrong_code()
-	}
+    enter_promo_code: enter_promo_code(),
+    wrong_code: wrong_code()
+  }
 })
 
 const pick_drink_or_go_back = () => ({
   type: "composite",
-	nodes: [
-		["pick", pick_drink()],
-		["go_back", go_back_button()]
-	]
+  nodes: [
+    ["pick", pick_drink()],
+    ["go_back", go_back_button()]
+  ]
 })
 
 const pick_drink = () => ({
   type: "graph",
-	start: "nothing_configured",
-	arrows: {
+  start: "nothing_configured",
+  arrows: {
 
-		nothing_configured: {
-			picked_hot_drink: "pick_cooler",
-			picked_cold_drink: "cold_drink_configured"
-		},
-
-		pick_cooler: {
-			picked_cooler: "hot_drink_configured",
-			picked_cold_drink: "cold_drink_configured"
-		},
-
-		hot_drink_configured: {
-			picked_hot_drink: "hot_drink_configured",
-      picked_cooler: "hot_drink_configured",
-			picked_cold_drink: "cold_drink_configured"
-		},
-
-		cold_drink_configured: {
-			picked_hot_drink: "pick_cooler",
+    nothing_configured: {
+      picked_hot_drink: "pick_cooler",
       picked_cold_drink: "cold_drink_configured"
-		}
+    },
 
-	},
-	nodes: {
-		nothing_configured: nothing_configured(),
-		cold_drink_configured: cold_drink_configured(),
-		pick_cooler: pick_cooler(),
-		hot_drink_configured: hot_drink_configured()
-	}
+    pick_cooler: {
+      picked_cooler: "hot_drink_configured",
+      picked_cold_drink: "cold_drink_configured"
+    },
+
+    hot_drink_configured: {
+      picked_hot_drink: "hot_drink_configured",
+      picked_cooler: "hot_drink_configured",
+      picked_cold_drink: "cold_drink_configured"
+    },
+
+    cold_drink_configured: {
+      picked_hot_drink: "pick_cooler",
+      picked_cold_drink: "cold_drink_configured"
+    }
+
+  },
+  nodes: {
+    nothing_configured: nothing_configured(),
+    cold_drink_configured: cold_drink_configured(),
+    pick_cooler: pick_cooler(),
+    hot_drink_configured: hot_drink_configured()
+  }
 })
 
 const nothing_configured = () => ({
-	type: "composite",
-	nodes: [
-		["type", pick_drink_type()],
-		["sugar", set_sugar()]
-	]
+  type: "composite",
+  nodes: [
+    ["type", pick_drink_type()],
+    ["sugar", set_sugar()]
+  ]
 })
 
 const cold_drink_configured = () => ({
   type: "composite",
-	nodes: [
-		["type", change_drink_type()],
-		["sugar", set_sugar()],
-		["nav", pick_cold_button()]
-	]
+  nodes: [
+    ["type", change_drink_type()],
+    ["sugar", set_sugar()],
+    ["nav", pick_cold_button()]
+  ]
 })
 
 const pick_cooler = () => ({
   type: "composite",
-	nodes: [
-		["type", change_drink_type()],
-		["cooler", cooler()],
-		["sugar", set_sugar()]
-	]
+  nodes: [
+    ["type", change_drink_type()],
+    ["cooler", cooler()],
+    ["sugar", set_sugar()]
+  ]
 })
 
 const hot_drink_configured = () => ({
-	type: "composite",
-	nodes: [
-		["type", change_drink_type()],
-		["cooler", change_cooler()],
-		["sugar", set_sugar()],
-		["nav", pick_hot_button()]
-	]
+  type: "composite",
+  nodes: [
+    ["type", change_drink_type()],
+    ["cooler", change_cooler()],
+    ["sugar", set_sugar()],
+    ["nav", pick_hot_button()]
+  ]
 })
 
 const set_sugar = () => ({
-	type: "graph",
-	start: "update_sugar",
-	arrows: {
+  type: "graph",
+  start: "update_sugar",
+  arrows: {
 
-		update_sugar: {
+    update_sugar: {
       updated: "update_sugar"
     }
 
-	},
-	nodes: {update_sugar: update_sugar()}
+  },
+  nodes: {update_sugar: update_sugar()}
 })
 
 const go_back_button = make_button('go_back', 'Back')
