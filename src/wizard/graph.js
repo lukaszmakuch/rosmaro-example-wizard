@@ -22,15 +22,15 @@ export default () => ({
   start: "promo_code",
   arrows: {
 
-  promo_code: {
-    ok: "ordering_with_promo_code",
-    wrong: "ordering_without_promo_code",
-    skipped: "ordering_without_promo_code"
-  },
+    promo_code: {
+      ok: "ordering_with_promo_code",
+      wrong: "ordering_without_promo_code",
+      skipped: "ordering_without_promo_code"
+    },
 
-  ordering_without_promo_code: {
-    go_back: "promo_code"
-  }
+    ordering_without_promo_code: {
+      go_back: "promo_code"
+    }
 
   },
   nodes: {
